@@ -51,6 +51,7 @@ $$
 (coin tosses)
 
 The Lower Tail of Chernoff Bound is expressed as:
+
 $$
 \Pr(X \leq (1-\epsilon)\mu) \leq \exp\left(-\frac{\epsilon^2 \mu}{2}\right), 0 < \epsilon < 1
 $$
