@@ -1,7 +1,7 @@
 import pandas as pd
 import pickle
 
-data = pd.read_excel("data/Online Retail.xlsx")  # read excel by pandas
+data = pd.read_excel("Online Retail.xlsx")  # read excel by pandas
 print(data)
 
 data = data.values
@@ -10,7 +10,7 @@ print(data)
 
 order_list = list()  # empty list, list of our final data
 
-order_set = set()   # empty orderSet
+order_set = set()  # empty orderSet
 InvoiceNo = data[0, 0]  # the current InvoiceNo
 # go though our data
 for i in range(len(data)):
@@ -27,5 +27,7 @@ for i in range(len(data)):
 print(order_list[0:10])
 
 # To store our result by pickle
-f = open("order_list.pickle", 'wb')
-pickle.dump(order_list, f)
+# f = open("order_list.pickle", 'wb')
+# pickle.dump(order_list, f)
+with open("order_list.pickle", "wb") as f:
+    pickle.dump(order_list, f)

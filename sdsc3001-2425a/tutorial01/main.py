@@ -19,11 +19,11 @@ def update_candidates_dict(frequent_list):
     # ...
     # i = m-2, j = m-1
     for i in range(len(old_candidates_list) - 1):
-        for j in range(i+1, len(old_candidates_list)):
+        for j in range(i + 1, len(old_candidates_list)):
             candidateA = list(old_candidates_list[i])
             candidateB = list(old_candidates_list[j])
-            agree = True    # they have a possible father candidate
-            for k in range(size-1):
+            agree = True  # they have a possible father candidate
+            for k in range(size - 1):
                 if candidateA[k] != candidateB[k]:
                     agree = False
                     break
@@ -34,13 +34,15 @@ def update_candidates_dict(frequent_list):
 
     candidates_dict = dict()
     for candidate in new_candidates_list:
-        candidates_dict[tuple(candidate)] = 0    # add a candidate in candidates_dict with count 0
+        candidates_dict[tuple(candidate)] = (
+            0  # add a candidate in candidates_dict with count 0
+        )
     return candidates_dict
 
 
 # -----------------------Start Here------------------------------------
 # load data set
-f = open("order_list.pickle", 'rb')
+f = open("order_list.pickle", "rb")
 order_list = pickle.load(f)
 # order_list = order_list[0:1000]
 print(order_list[0:10])
@@ -48,7 +50,7 @@ print(order_list[0:10])
 # set some parameters
 min_sup = 500
 
-final_output_list = list()    # list of final output
+final_output_list = list()  # list of final output
 
 # --------------------------------------------------------
 # the initial candidates_dict are all single item
@@ -57,7 +59,7 @@ for order in order_list:
     for item in order:
         item = tuple([item])
         if item not in candidates_dict:
-            candidates_dict[item] = 0    # add an item in candidates_dict with count 0
+            candidates_dict[item] = 0  # add an item in candidates_dict with count 0
 
 print("initial candidates_dict")
 print(candidates_dict)
@@ -76,7 +78,7 @@ while True:
             temp_set = set()
             for item in candidate:
                 temp_set.add(item)
-            if temp_set.issubset(order):      # check issubset
+            if temp_set.issubset(order):  # check issubset
                 candidates_dict[candidate] += 1  # count
 
     # check frequency
