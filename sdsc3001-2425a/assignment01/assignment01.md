@@ -1,6 +1,6 @@
 # SDSC3001 - Assignment 1
 
-[Assignment_1](./SDSC3001%20-%20Assignment%201.png)
+![Assignment_1](./SDSC3001%20-%20Assignment%201.png)
 
 ## Question 1
 
@@ -86,6 +86,7 @@ Since the series $\sum_{k=1}^{\infty} \frac{1}{k^2}$ converges to $\frac{\pi^2}{
 $$
 \text{Pr}\left(\left|T - E[T]\right| \geq cn\right) \leq \frac{\text{Var}(T)}{(cn)^2}
 $$
+
 $$
 \text{Pr}\left(\left|T - nH_n\right| \geq cn\right) \leq \frac{\pi^2}{6c^2}
 $$
