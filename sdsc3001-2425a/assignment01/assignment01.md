@@ -76,4 +76,27 @@ $\therefore \Pr(X \leq (1-\epsilon)\mu) \leq \exp\left(-\frac{\epsilon^2 \mu}{2}
 
 ## Question 3
 
+This problem rewrote the classic coupon collector's problem in terms of the expected number of plays to hear every song at least once and the probability bound for the deviation of the number of plays from its expectation. Listening to $n$ distinct songs can be considered as a coupon collection process.
+
+First, the expectation of the number of songs played $T$ can be expressed as $E[T] = E[T_1] + E[T_2] + \cdots + E[T_n]$. Since the probability of listening to a new song at each stage is $\frac{n-i+1}{n}$, the expected number of plays until a new song is chosen is $\frac{n}{n-i+1}$, so $E[T_i] = \frac{n}{n-i+1}$. Therefore, the expected time to play every song at least once is $E[T] = \sum_{i=1}^{n} \frac{n}{n-i+1} = n \sum_{i=1}^{n} \frac{1}{i} = nH_n$.
+
+Next, the probability bound for $|T - nH_n|$ can be shown using Chebyshev's inequality. The variance of $T$ is $\text{Var}(T) = \sum_{i=1}^{n} \frac{n^2}{(n-i+1)^2} = n^2 \sum_{k=1}^{n} \frac{1}{k^2}$ as the variance of a geometric random variable for $T_i$ is given by $\text{Var}(T_i) = \frac{n^2}{(n-i+1)^2}$.
+Since the series $\sum_{k=1}^{\infty} \frac{1}{k^2}$ converges to $\frac{\pi^2}{6}$ given as a hint, the variance of $T$ is $\text{Var}(T) \leq n^2 \cdot \frac{\pi^2}{6}$. By Chebyshev's inequality, the probability bound is:
+
+$$
+\text{Pr}\left(\left|T - E[T]\right| \geq cn\right) \leq \frac{\text{Var}(T)}{(cn)^2}
+$$
+$$
+\text{Pr}\left(\left|T - nH_n\right| \geq cn\right) \leq \frac{\pi^2}{6c^2}
+$$
+where, $\frac{\text{Var}(T)}{(cn)^2}= \frac{n^2 \cdot \pi^2}{6} \cdot \frac{1}{c^2n^2}$
+
 ## Question 4
+
+To prove that the eigenvalues of the transition probability matrix $\mathbf{P}$ are within the range $[-1, 1]$, we can first show that the matrix $\mathbf{P}$ has an eigenvalue of 1.
+
+The diagonal entries $p_{ii}$ are non-negative and less than or equal to 1, and the sum of the off-diagonal entries in each row is $1 - p_{ii}$, since each row sums to 1 by the definition of the matrix $\mathbf{P}$. In other words, $\sum_{j=1}^n p_{ij} = 1,\:\text{for all } i = 1, 2, \dots, n$.
+
+This implies that the vector $\mathbf{1} = [1, 1, \dots, 1]^T$ (the all-ones vector) is a right eigenvector of $\mathbf{P}$ corresponding to the eigenvalue $\lambda = 1$. Thus, $\lambda = 1$ is an eigenvalue of $\mathbf{P}$, since $\lambda = 1$, $A-I$ is a singular matrix, and the ${(A-I)}$ is not full rank.
+
+Also, the matrix $\mathbf{P}$, being a non-negative matrix with row sums equal to 1, cannot possess eigenvalues whose absolute value exceeds 1 by the Perron-Frobenius theorem since the sum of the absolute values of the eigenvalues is equal to the sum of the diagonal entries of the matrix.
