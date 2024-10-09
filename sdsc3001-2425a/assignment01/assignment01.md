@@ -90,6 +90,7 @@ $$
 $$
 \text{Pr}\left(\left|T - nH_n\right| \geq cn\right) \leq \frac{\pi^2}{6c^2}
 $$
+
 where, $\frac{\text{Var}(T)}{(cn)^2}= \frac{n^2 \cdot \pi^2}{6} \cdot \frac{1}{c^2n^2}$
 
 ## Question 4
