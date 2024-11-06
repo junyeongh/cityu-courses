@@ -6,9 +6,7 @@ Design a sampling algorithm to maintain $k$ uniform samples from a stream of ele
 
 ## Question 2
 
-Download the file "trans.txt" and implement a streaming algorithm for mining the top-
- most frequent patterns. In the data file "trans.txt", every line is a transaction represented by a set of item ids and the largest transaction contains
- items.
+Download the file "trans.txt" and implement a streaming algorithm for mining the top-$k$ most frequent patterns. In the data file "trans.txt", every line is a transaction represented by a set of item ids and the largest transaction contains $15$ items.
 
 ### Part A
 
@@ -23,7 +21,7 @@ Apply the idea of the Misra–Gries Algorithm to mine approximate frequent patte
 
 #### b.1
 
-Suppose in total we have $M$ transactions. Let $L=\sum_{i=1}^ML_i$. Suppose $f_S$ is the real support of a pattern $S$ and \hat{f}_S is the approximate support maintained by your Misra–Gries Algorithm. Prove that for any pattern $S$, we have that $f_S \geq \hat{f}_S \geq f_S-\frac{L}{C+1}$.
+Suppose in total we have $M$ transactions. Let $L=\sum_{i=1}^ML_i$. Suppose $f_S$ is the real support of a pattern $S$ and $\hat{f}_S$ is the approximate support maintained by your Misra–Gries Algorithm. Prove that for any pattern $S$, we have that $f_S \geq \hat{f}_S \geq f_S-\frac{L}{C+1}$.
 
 #### b.2
 
