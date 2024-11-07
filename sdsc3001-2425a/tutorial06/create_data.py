@@ -1,5 +1,8 @@
 import random
-import numpy as np
+import os
+
+# Ensure the directory exists
+os.makedirs("data_stream", exist_ok=True)
 
 # we will generate 100 txt files
 # In each file, there are 10000 integers and each integer in [1, 1000]
