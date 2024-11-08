@@ -1,10 +1,13 @@
 -- Function to find the maximum difference
 findMaxDifference :: [Int] -> Int
+findMaxDifference [] = 0
+findMaxDifference [_] = 0
 findMaxDifference arr = maxDifferenceHelper arr 0 (length arr - 1)
 
 -- Helper function to recursively find the maximum difference
 maxDifferenceHelper :: [Int] -> Int -> Int -> Int
 maxDifferenceHelper arr left right
+  | left >= right = 0
   | right - left == 1 = arr !! right - arr !! left
   | otherwise = maximum [leftDiff, rightDiff, crossDiff]
   where
