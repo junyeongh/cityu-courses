@@ -26,10 +26,10 @@ Structure of both presentation and report will be
     - its problem
   - *b-bit MinHash*
     - explanation
-    - its problem
+    - its problem -> cannot be used for stream dataset
   - *Odd Sketch*
     - explanation
-    - its problem
+    - its problem -> cannot be used for stream dataset
 - **MaxLogHash** (2)
   - <- 5x memory efficient than MinHash with the same accuracy and computational cost for estimating high similarities
 - **Dataset & Result analysis** (3, 4)
