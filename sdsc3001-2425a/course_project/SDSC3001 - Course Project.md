@@ -1,5 +1,7 @@
 # SDSC3001 - Course Project
 
+## Instruction
+
 In the project, you and your teammates (at most 5 students per team) need to reproduce a paper about big data techniques. To reproduce a paper, you need to read it and understand its core techniques. If you have trouble understanding the theoretical parts, that is okay. However, you should at least be able to implement the algorithms proposed in the paper. Then you can try to apply your implementation on the datasets used in the paper as well as other datasets available online to test the performance of the proposed algorithms. Finally, you need to write a report that includes
 
 - (1) The research problem that the paper wants to address.
