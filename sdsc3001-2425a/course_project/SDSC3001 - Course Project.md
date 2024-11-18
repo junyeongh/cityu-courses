@@ -32,3 +32,16 @@ To find an appropriate paper, you may want to browse recent papers published in 
 18. Huang, Zengfeng. "Near-optimal frequent directions for sketching dense and sparse matrices." International Conference on Machine Learning. PMLR, 2018.
 
 Your submission should be a zip file including your written report and your code.
+
+## Presentation
+
+There are:
+
+- Presentation (12 mins)
+  - (1) The big data problem in the research paper. What are the major challenges?
+  - (2) The method developed to solve the problem.
+    - What is the intuition of the method?
+    - How does the method work? Any theoretical guarantees?
+  - (3) The dataset(s) used in the paper and key statistics of the dataset(s).
+  - (4) The experimental results.
+  - (5) Any thoughts on the advantages and disadvantages as well as potential improvements of the proposed method? (optional)
