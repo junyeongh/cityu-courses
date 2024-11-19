@@ -1,8 +1,8 @@
 import random
 import math
 import mmh3
-import time
-import sys
+# import time
+# import sys
 
 totalShingles = (1 << 32) - 1
 
@@ -16,9 +16,7 @@ def MaxLog(seed):
             max_hash_val_list = maxShingleID[item[0]][0]
             max_hash_sig_list = maxShingleID[item[0]][1]
 
-            temp = (
-                randomNoA * mmh3.hash(str(item[1]), seed) + randomNoB
-            ) % totalShingles
+            temp = (randomNoA * mmh3.hash(str(item[1]), seed) + randomNoB) % totalShingles
             bucket_pos = temp % k
             temp = temp / float(totalShingles)
             # print temp
@@ -51,15 +49,9 @@ def hash_parameter():
 def estimate():
     con = 0
     for x in range(0, k):
-        if (
-            maxShingleID["setA"][0][x] > maxShingleID["setB"][0][x]
-            and maxShingleID["setA"][1][x] == 1
-        ):
+        if maxShingleID["setA"][0][x] > maxShingleID["setB"][0][x] and maxShingleID["setA"][1][x] == 1:
             con = con + 1
-        elif (
-            maxShingleID["setA"][0][x] < maxShingleID["setB"][0][x]
-            and maxShingleID["setB"][1][x] == 1
-        ):
+        elif maxShingleID["setA"][0][x] < maxShingleID["setB"][0][x] and maxShingleID["setB"][1][x] == 1:
             con = con + 1
 
     num = float(k)

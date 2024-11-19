@@ -1,10 +1,10 @@
 import random
 import math
 import mmh3
-import numpy as np
 # import argparse
 # import time
 # import sys
+# import numpy as np
 # from heapq import heapify, heappop, heappush
 
 totalShingles = (1 << 32) - 1
@@ -23,9 +23,7 @@ def MaxLog(seed):
             # print max_hash_val_list
             # print max_hash_sig_list
             for x in range(0, k):
-                temp = (
-                    randomNoA[x] * mmh3.hash(str(item[1]), seed) + randomNoB[x]
-                ) % totalShingles
+                temp = (randomNoA[x] * mmh3.hash(str(item[1]), seed) + randomNoB[x]) % totalShingles
                 temp = temp / float(totalShingles)
                 log_temp = -math.log(temp, 2)
                 hash_val = math.ceil(log_temp)
@@ -62,15 +60,9 @@ def hash_parameter(k):
 def estimate():
     con = 0
     for x in range(0, k):
-        if (
-            maxShingleID["setA"][0][x] > maxShingleID["setB"][0][x]
-            and maxShingleID["setA"][1][x] == 1
-        ):
+        if maxShingleID["setA"][0][x] > maxShingleID["setB"][0][x] and maxShingleID["setA"][1][x] == 1:
             con = con + 1
-        elif (
-            maxShingleID["setA"][0][x] < maxShingleID["setB"][0][x]
-            and maxShingleID["setB"][1][x] == 1
-        ):
+        elif maxShingleID["setA"][0][x] < maxShingleID["setB"][0][x] and maxShingleID["setB"][1][x] == 1:
             con = con + 1
     # print con
     num = float(k)
