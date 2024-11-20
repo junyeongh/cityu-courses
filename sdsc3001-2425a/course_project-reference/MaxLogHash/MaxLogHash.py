@@ -80,19 +80,19 @@ if __name__ == "__main__":
     sim = (2 * jaccard_true) / (1 + jaccard_true)
 
     maxShingleID = {}
-    the_same_index = total_num / 2 * sim
-    setA_uni_index = total_num / 2 * 1
-    setB_uni_index = total_num / 2 * (2 - sim)
+    index_common = total_num / 2 * sim
+    index_unique_setA = total_num / 2 * 1
+    index_unique_setB = total_num / 2 * (2 - sim)
 
     stream = []
     # synthetic data
     for num in range(total_num):
-        if num <= the_same_index:
+        if num <= index_common:
             stream.append(["setA", num])
             stream.append(["setB", num])
-        elif num <= setA_uni_index:
+        elif num <= index_unique_setA:
             stream.append(["setA", num])
-        elif num <= setB_uni_index:
+        elif num <= index_unique_setB:
             stream.append(["setB", num])
         else:
             break
