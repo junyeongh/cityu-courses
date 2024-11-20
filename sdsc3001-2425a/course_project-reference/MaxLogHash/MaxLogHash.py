@@ -72,7 +72,7 @@ def estimate():
 
 
 if __name__ == "__main__":
-    random_seed = 1
+    random_seed = 42
     card = 10000
     jaccard_true = 0.9
     k = int(128)
