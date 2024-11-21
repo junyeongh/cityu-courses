@@ -1,15 +1,6 @@
 # MaxLogHash: A Memory-Efficient Sketch Method for Estimating High Similarities in Streaming Sets
 
-[qyy0180/MaxLogHash: paper accepted by SIGKDD 2019](https://github.com/qyy0180/MaxLogHash)
-
-paper accepted by SIGKDD 2019
-
-Pinghui Wang, Yiyan Qi, Yuanming Zhang, Qiaozhu Zhai, Chenxu Wang, John C.S. Lui, Xiaohong Guan:
-A Memory-Efficient Sketch Method for Estimating High Similarities in Streaming Sets
-
 - **Introduction** (1)
-  - There are different approaches to determine how similar a certain dataset is similar to, and one metric to show the similarities are Jaccard similarity coefficient, which is defined as the ...
-  - It is obvious when the size `n` of the dataset gets large, and MinHash is a set similarity estimation techique to handle larget sets.
 - **Similarity matrix and their problems** (1)
   - *MinHash*
     - explanation
@@ -24,22 +15,16 @@ A Memory-Efficient Sketch Method for Estimating High Similarities in Streaming S
   - <- 5x memory efficient than MinHash with the same accuracy and computational cost for estimating high similarities
 - **Dataset & Result analysis** (3, 4)
 
-## 1. Introduction
+---
 
-In the context of data science, 'sketching' refers to the process of compressing a dataset or data stream into a smaller representation so that we can efficiently 'reduce' the complexity of the dataset. The use cases of sketching are vast; frequency estimation such as Count-Min Sketch, heavy hitter identification, or matrix sketching that are discussed during last few lectures are some of the examples.
+Unfortunately, the complexity of the naïve approach scales linearly with the number of stored elements
+making it infeasible for large-scale datasets
 
-In this presentation, I will introduce a sketching technique called 'MaxLogHash' that is used to estimate the Jaccard similarity coefficient between two sets from a paper titled 'A Memory-Efficient Sketch Method for Estimating High Similarities in Streaming Sets'.
+이거랑 저거는 우리 수업 시간에 배웠던 스트리밍을 생각해보면 그런 문제가 있네?
 
-## 2. Jaccard similarity coefficient
+그래서 이 새 알고리즘의 목표는 스트리밍 환경에서 쓸 수 있으면서 좀 더 효율적인 알고리즘이야
 
-In data science, we often deal with multiple datasets and there are cases we need to deal with their similarities. The spam filtering, for instance, starts with the idea where how similar an email that a user received is similar to the dataset of spam emails?
-
-The Jaccard similarity coefficient is a measure of how similar two sets are, and it is defined as the size of the intersection divided by the size of the union of the two sets.
-
-As the size `n` of the dataset gets large, we can intuitively think that it becomes computationally expensive to calculate the Jaccard similarity coefficient.
-
-## 3. Sketching techniques for the Jaccard similarity coefficient estimation
-
+그래서 이 알고리즘에 대한 직관적인 아이디어는 똑같이 해쉬를 써.
 In this paper, the authors introduces several sketching techniques to estimate the Jaccard similarity coefficient between two sets.
 
 - MinHash
@@ -59,3 +44,14 @@ MinHash is a set similarity estimation technique that is used to handle large se
 ## References
 
 - Experimental dataset from the paper: found [Frequent Itemset Mining Dataset Repository](http://fimi.uantwerpen.be/data/)
+
+- Paper: <https://arxiv.org/abs/1905.08977>
+- Code
+  - <https://github.com/ekzhu/datasketch/blob/master/datasketch/minhash.py>
+  - <https://github.com/ekzhu/datasketch/blob/master/datasketch/hashfunc.py>
+  - <https://docs.python.org/3/library/hashlib.html>
+  - <https://github.com/hajimes/mmh3>
+  - <https://github.com/qyy0180/MaxLogHash>
+- Readings
+  - <https://en.wikipedia.org/wiki/W-shingling>
+  - <https://deepgram.com/ai-glossary/k-shingles>
