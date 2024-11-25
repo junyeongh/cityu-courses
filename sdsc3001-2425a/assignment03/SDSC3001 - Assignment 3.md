@@ -2,7 +2,7 @@
 
 ## Question 1
 
-Design a sampling algorithm to maintain $k$ uniform samples from a stream of elements $x_1,x_2,x_3,...$. Prove the correctness of your algorithm, that is, your algorithm can guarantee that at any time point $\ge k$ (the time we have received $x_1,x_2,...,x_t$) the probability that ($i\le t$) is kept as a sample is $\frac{k}{t}$.
+Design a sampling algorithm to maintain $k$ uniform samples from a stream of elements $x_1,x_2,x_3,...$. Prove the correctness of your algorithm, that is, your algorithm can guarantee that at any time point $t \ge k$ (the time we have received $x_1,x_2,...,x_t$) the probability that $x_i$ ($i\le t$) is kept as a sample is $\frac{k}{t}$.
 
 ## Question 2
 
