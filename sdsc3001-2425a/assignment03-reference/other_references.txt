@@ -1,1 +1,3 @@
 https://www.cse.cuhk.edu.hk/~taoyf/course/5705f10/lec7.pdf
+https://people.csail.mit.edu/rrw/6.045-2019/encalgs-mg.pdf
+[Misra-Gries Algorithm. Estimating the most frequent Items in a… | by CyberNotes | Medium](https://cybernotes.medium.com/misra-gries-algorithm-02d01bc6a3ec)
