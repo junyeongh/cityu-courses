@@ -36,4 +36,8 @@ Since we only have the approximate supports of patterns obtained by our Misra–
 
 #### b.4
 
-Set $k=500$. Run your Misra–Gries Algorithm on the "trans.txt" dataset and report the values of $L$ and $minSup(A)$ when setting $C=500000, 750000, 1000000$. To compute $minSub(A)$, you can refer to the file "patterns_Apriori.txt" containing all the frequent patterns of support at least $21$. Each line of "patterns_Apriori.txt" is in the form $id_1,id_2,...,id_l:sup$, where $id_1,id_2,...,id_l$ denotes a pattern $\{id_1,id_2,...,id_l\}$ and $sup$ is the support of this pattern. (Hint: the file "patterns_Apriori.txt" contains enough information. If your algorithm returns some pattern that is not in the "patterns_Apriori.txt" file, probably your algorithm is not implemented correctly.)
+Set $k=500$. Run your Misra–Gries Algorithm on the "trans.txt" dataset and report the values of $L$ and $minSup(A)$ when setting $C=500000, 750000, 1000000$.
+
+To compute $minSub(A)$, you can refer to the file "patterns_Apriori.txt" containing all the frequent patterns of support at least $21$. Each line of "patterns_Apriori.txt" is in the form $id_1,id_2,...,id_l:sup$, where $id_1,id_2,...,id_l$ denotes a pattern $\{id_1,id_2,...,id_l\}$ and $sup$ is the support of this pattern.
+
+(Hint: the file "patterns_Apriori.txt" contains enough information. If your algorithm returns some pattern that is not in the "patterns_Apriori.txt" file, probably your algorithm is not implemented correctly.)
