@@ -3,10 +3,10 @@ import itertools
 import heapq
 
 freq = {}
-with open('patterns_Apriori.txt') as f:
+with open("patterns_Apriori.txt") as f:
     for line in f:
-        line = line[:-1].split(':')
-        pattern = line[0].split(',')
+        line = line[:-1].split(":")
+        pattern = line[0].split(",")
         pattern = [int(i) for i in pattern]
         freq[tuple(pattern)] = int(line[1])
 
@@ -19,9 +19,9 @@ for C in C_list:
     counter = {}
     L = 0
     A = []
-    with open('trans.txt') as f:
+    with open("trans.txt") as f:
         for line in f:
-            line = line[:-1].split('\t')
+            line = line[:-1].split("\t")
             line = [int(i) for i in line]
             l_m = m if len(line) > m else len(line)
             for r in range(1, l_m + 1):
@@ -47,6 +47,10 @@ for C in C_list:
     minSup_A.append(min(A))
     L_list.append(L)
 
-print('L is: ', L_list[0])
+print("L is: ", L_list[0])
 for i in range(3):
-    print('when C is: ', C_list[i], ' minSup(A) is : ', minSup_A[i])
+    print("when C is: ", C_list[i], " minSup(A) is : ", minSup_A[i])
+# L is:  59340244
+# when C is:  500000  minSup(A) is :  1037
+# when C is:  750000  minSup(A) is :  1077
+# when C is:  1000000  minSup(A) is :  1098
