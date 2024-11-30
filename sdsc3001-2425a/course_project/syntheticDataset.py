@@ -65,10 +65,10 @@ if __name__ == "__main__":
         Compare all similarity estimation methods over multiple runs
 
         Args:
-            jaccard_true: true Jaccard similarity
+            stream: list of tuples representing the stream
+            num_runs: number of runs with different random seeds
             k: number of hash functions
             n: number of elements in the stream (cardinality)
-            num_runs: number of runs with different random seeds
 
         Returns:
             dict: Dictionary containing error statistics for each method
@@ -77,6 +77,7 @@ if __name__ == "__main__":
         results = {"minhash": [], "bbit": [], "oddsketch": [], "maxlog": []}
 
         for run in range(num_runs):
+            print("Run:", run + 1)
             # Set random seed for this run
             random.seed(run)
 
@@ -102,11 +103,13 @@ if __name__ == "__main__":
             maxlog.process_stream(stream)
             results["maxlog"].append(maxlog.estimate_similarity())
 
+        print("Results:", results)
         return results
 
     # Parameters
     k = 128  # Number of hash functions
     n = 10_000  # cardinality of the sets
+    runs = 10
 
     # Initialize empty lists for each statistic
     balanced_jaccard_values = []
@@ -117,8 +120,8 @@ if __name__ == "__main__":
     balanced_bias_results = []
 
     # Balanced stream
-    runs = 100
     for i in np.arange(0.80, 1.00, 0.02):
+        print("Synthetic balanced stream with Jaccard similarity:", i)
         # Generate synthetic stream
         stream = generate_balanced_synthetic_stream(n, i)
         results = compare_all_methods(stream, runs)
@@ -189,11 +192,11 @@ if __name__ == "__main__":
     df_balance_rmse = pl.DataFrame(balanced_rmse_results)
     df_balance_bias = pl.DataFrame(balanced_bias_results)
 
-    df_balance_mean.write_parquet("result/balanced_mean_results.parquet")
-    df_balance_median.write_parquet("result/balanced_median_results.parquet")
-    df_balance_std.write_parquet("result/balanced_std_results.parquet")
-    df_balance_rmse.write_parquet("result/balanced_rmse_results.parquet")
-    df_balance_bias.write_parquet("result/balanced_bias_results.parquet")
+    df_balance_mean.write_parquet("balanced_mean_results.parquet")
+    df_balance_median.write_parquet("balanced_median_results.parquet")
+    df_balance_std.write_parquet("balanced_std_results.parquet")
+    df_balance_rmse.write_parquet("balanced_rmse_results.parquet")
+    df_balance_bias.write_parquet("balanced_bias_results.parquet")
 
     # Initialize empty lists for each statistic
     unbalanced_jaccard_values = []
@@ -204,8 +207,8 @@ if __name__ == "__main__":
     unbalanced_bias_results = []
 
     # Unbalanced stream
-    runs = 100
     for i in np.arange(0.80, 1.00, 0.02):
+        print("Synthetic unbalanced stream with Jaccard similarity:", i)
         # Generate synthetic stream
         stream = generate_unbalanced_synthetic_stream(n, i)
         results = compare_all_methods(stream, runs)
@@ -276,8 +279,8 @@ if __name__ == "__main__":
     df_unbalance_rmse = pl.DataFrame(unbalanced_rmse_results)
     df_unbalance_bias = pl.DataFrame(unbalanced_bias_results)
 
-    df_unbalance_mean.write_parquet("result/unbalance_mean_results.parquest")
-    df_unbalance_median.write_parquet("result/unbalance_median_results.parquest")
-    df_unbalance_std.write_parquet("result/unbalance_std_results.parquest")
-    df_unbalance_rmse.write_parquet("result/unbalance_rmse_results.parquest")
-    df_unbalance_bias.write_parquet("result/unbalance_bias_results.parquest")
+    df_unbalance_mean.write_parquet("unbalance_mean_results.parquest")
+    df_unbalance_median.write_parquet("unbalance_median_results.parquest")
+    df_unbalance_std.write_parquet("unbalance_std_results.parquest")
+    df_unbalance_rmse.write_parquet("unbalance_rmse_results.parquest")
+    df_unbalance_bias.write_parquet("unbalance_bias_results.parquest")
