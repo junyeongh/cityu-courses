@@ -266,21 +266,22 @@ class MaxLogHash:
     def process_stream(self, stream):
         for item in stream:
             if item[0] in self.maxShingleID:
-                max_hash_val_list = self.maxShingleID[item[0]][0]
-                max_hash_sig_list = self.maxShingleID[item[0]][1]
+                max_hash_val_list = np.zeros(self.k, dtype=np.uint8)
+                max_hash_sig_list = np.ones(self.k, dtype=bool)
 
                 for x in range(self.k):
                     temp = (
                         self.randomNoA[x] * mmh3.hash(str(item[1]), self.seed) + self.randomNoB[x]
                     ) % self.totalShingles
                     temp = temp / float(self.totalShingles)
-                    log_temp = -math.log(temp, 2)
-                    hash_val = math.ceil(log_temp)
+                    hash_val = math.floor(-math.log(temp, 2))
 
-                    if hash_val > max_hash_val_list[x]:
+                    # Three cases from paper
+                    if hash_val > max_hash_val_list[x]:  # hash_val > max_hash_val_list[x]
                         max_hash_val_list[x] = hash_val
                         max_hash_sig_list[x] = 1
-                    elif hash_val == max_hash_val_list[x]:
+                    # else # hash_val < max_hash_val_list[x]: No change needed
+                    elif hash_val == max_hash_val_list[x]:  # hash_val == max_hash_val_list[x]
                         max_hash_sig_list[x] = 0
 
                 self.maxShingleID[item[0]][0] = max_hash_val_list
@@ -291,6 +292,10 @@ class MaxLogHash:
                 self.maxShingleID[item[0]] = [max_hash_val_list, max_hash_sig_list]
 
     def estimate_similarity(self, setA="setA", setB="setB"):
+        """
+        Estimate Jaccard similarity between two sets
+        setA, setB: identifiers of the sets to compare
+        """
         con = 0
         for x in range(self.k):
             if self.maxShingleID[setA][0][x] > self.maxShingleID[setB][0][x] and self.maxShingleID[setA][1][x] == 1:
