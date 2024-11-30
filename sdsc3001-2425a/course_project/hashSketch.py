@@ -266,9 +266,11 @@ class MaxLogHash:
     def process_stream(self, stream):
         for item in stream:
             if item[0] in self.maxShingleID:
-                max_hash_val_list = np.zeros(self.k, dtype=np.uint8)
-                max_hash_sig_list = np.ones(self.k, dtype=bool)
+                # Get existing values
+                max_hash_val_list = self.maxShingleID[item[0]][0]
+                max_hash_sig_list = self.maxShingleID[item[0]][1]
 
+                # Update with new element
                 for x in range(self.k):
                     temp = (
                         self.randomNoA[x] * mmh3.hash(str(item[1]), self.seed) + self.randomNoB[x]
@@ -277,18 +279,27 @@ class MaxLogHash:
                     hash_val = math.floor(-math.log(temp, 2))
 
                     # Three cases from paper
-                    if hash_val > max_hash_val_list[x]:  # hash_val > max_hash_val_list[x]
+                    if hash_val < max_hash_val_list[x]:
+                        continue  # No change needed
+                    elif hash_val == max_hash_val_list[x]:
+                        max_hash_sig_list[x] = 0  # Multiple elements with same max
+                    else:  # hash_val > max_hash_val_list[x]
                         max_hash_val_list[x] = hash_val
-                        max_hash_sig_list[x] = 1
-                    # else # hash_val < max_hash_val_list[x]: No change needed
-                    elif hash_val == max_hash_val_list[x]:  # hash_val == max_hash_val_list[x]
-                        max_hash_sig_list[x] = 0
+                        max_hash_sig_list[x] = 1  # Single element has new max
 
-                self.maxShingleID[item[0]][0] = max_hash_val_list
-                self.maxShingleID[item[0]][1] = max_hash_sig_list
+                self.maxShingleID[item[0]] = [max_hash_val_list, max_hash_sig_list]
             else:
-                max_hash_val_list = [-1] * self.k
-                max_hash_sig_list = [0] * self.k
+                # Initialize with first element
+                max_hash_val_list = np.full(self.k, -1, dtype=np.int8)
+                max_hash_sig_list = np.zeros(self.k, dtype=bool)  # All 1s initially
+
+                for x in range(self.k):
+                    temp = (
+                        self.randomNoA[x] * mmh3.hash(str(item[1]), self.seed) + self.randomNoB[x]
+                    ) % self.totalShingles
+                    temp = temp / float(self.totalShingles)
+                    max_hash_val_list[x] = math.floor(-math.log(temp, 2))
+
                 self.maxShingleID[item[0]] = [max_hash_val_list, max_hash_sig_list]
 
     def estimate_similarity(self, setA="setA", setB="setB"):
