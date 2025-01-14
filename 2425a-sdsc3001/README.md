@@ -1,5 +1,11 @@
 # SDSC3001
 
+## Assignments
+
+- [Assignment 1](./assignment01/assignment01.md)
+- [Assignment 2](./assignment02/assignment02.md)
+- [Assignment 3](./assignment03/assignment03.pdf)
+
 ## Tutorials
 
 - Tutorial 1: [Frequent Patter Mining](./tutorial01/tutorial1_2024.pdf)
